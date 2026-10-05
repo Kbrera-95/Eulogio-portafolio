@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 760" width="1600" height="760" role="img" aria-label="Rediseño de la web de Granix">
+  <defs>
+    <linearGradient id="gx-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF7EA"/>
+      <stop offset="1" stop-color="#FCE3BE"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="760" fill="url(#gx-bg)"/>
+  <circle cx="1180" cy="120" r="280" fill="#E07B25" opacity="0.10"/>
+  <circle cx="1520" cy="600" r="240" fill="#C25E12" opacity="0.08"/>
+  <circle cx="180" cy="660" r="200" fill="#E07B25" opacity="0.06"/>
+
+  <!-- navegador -->
+  <g transform="translate(760 92)">
+    <rect x="12" y="16" width="740" height="500" rx="24" fill="#8A4A0F" opacity="0.13"/>
+    <rect width="740" height="500" rx="24" fill="#FFFFFF"/>
+    <rect width="740" height="52" rx="24" fill="#FFF3E2"/>
+    <rect y="40" width="740" height="12" fill="#FFF3E2"/>
+    <circle cx="32" cy="26" r="6" fill="#E07B25" opacity="0.5"/>
+    <circle cx="54" cy="26" r="6" fill="#E07B25" opacity="0.3"/>
+    <circle cx="76" cy="26" r="6" fill="#E07B25" opacity="0.2"/>
+    <rect x="112" y="18" width="300" height="16" rx="8" fill="#E07B25" opacity="0.12"/>
+
+    <!-- hero del sitio -->
+    <rect x="36" y="86" width="330" height="18" rx="9" fill="#3A2A18" opacity="0.85"/>
+    <rect x="36" y="118" width="252" height="18" rx="9" fill="#3A2A18" opacity="0.55"/>
+    <rect x="36" y="164" width="180" height="10" rx="5" fill="#8A4A0F" opacity="0.3"/>
+    <rect x="36" y="204" width="132" height="40" rx="20" fill="#E07B25"/>
+    <rect x="418" y="86" width="286" height="200" rx="18" fill="#E07B25" opacity="0.16"/>
+    <circle cx="561" cy="186" r="56" fill="#E07B25" opacity="0.3"/>
+
+    <!-- grilla de productos -->
+    <g fill="#FFF3E2">
+      <rect x="36" y="312" width="200" height="148" rx="16"/>
+      <rect x="256" y="312" width="200" height="148" rx="16"/>
+      <rect x="476" y="312" width="228" height="148" rx="16"/>
+    </g>
+    <g fill="#E07B25" opacity="0.35">
+      <circle cx="136" cy="368" r="30"/>
+      <circle cx="356" cy="368" r="30"/>
+      <circle cx="590" cy="368" r="30"/>
+    </g>
+    <g fill="#8A4A0F" opacity="0.28">
+      <rect x="86" y="416" width="100" height="9" rx="4.5"/>
+      <rect x="306" y="416" width="100" height="9" rx="4.5"/>
+      <rect x="540" y="416" width="100" height="9" rx="4.5"/>
+    </g>
+    <g fill="#8A4A0F" opacity="0.16">
+      <rect x="106" y="436" width="60" height="8" rx="4"/>
+      <rect x="326" y="436" width="60" height="8" rx="4"/>
+      <rect x="560" y="436" width="60" height="8" rx="4"/>
+    </g>
+  </g>
+
+  <!-- tarjeta de métrica -->
+  <g transform="translate(700 508)">
+    <rect x="6" y="10" width="236" height="132" rx="20" fill="#8A4A0F" opacity="0.12"/>
+    <rect width="236" height="132" rx="20" fill="#FFFFFF"/>
+    <rect x="24" y="26" width="92" height="9" rx="4.5" fill="#E07B25"/>
+    <text x="24" y="92" font-family="sans-serif" font-size="42" font-weight="700" fill="#3A2A18">+38%</text>
+    <rect x="24" y="108" width="140" height="8" rx="4" fill="#8A4A0F" opacity="0.28"/>
+  </g>
+</svg>

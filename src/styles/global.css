@@ -1,0 +1,361 @@
+/* ===========================================================
+   Design tokens — extraídos del sitio original
+   =========================================================== */
+:root {
+  /* Color */
+  --page: #f7f7f8;
+  --surface: #ffffff;
+  --surface-2: #ededf0;
+  --ink: #121218;
+  --ink-2: #1b1b21;
+  --muted: #44454c;
+  --line: rgba(18, 18, 24, 0.08);
+  --brand: #1c57eb;
+  --brand-hover: #164ac9;
+  --dark: #1b1b21;
+
+  /* Tipografía */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
+  --font-body: 'Inter Variable', 'Inter', sans-serif;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 24px;
+  --radius-lg: 24px;
+  --radius: 16px;
+  --radius-sm: 12px;
+
+  /* Sombra de la barra flotante */
+  --shadow-nav: 0 1px 2px rgba(18, 18, 24, 0.04), 0 8px 24px rgba(18, 18, 24, 0.06);
+  --shadow-card: 0 1px 2px rgba(18, 18, 24, 0.04);
+}
+
+/* ===========================================================
+   Reset
+   =========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 104px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ===========================================================
+   Escala tipográfica
+   =========================================================== */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -1.12px;
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.72px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.48px;
+  font-weight: 500;
+}
+
+h4,
+h5 {
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.8px;
+  font-weight: 500;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ===========================================================
+   Utilidades de layout
+   =========================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: 96px;
+}
+
+/*
+  Texto solo para lectores de pantalla: nombra secciones y avisa de links
+  externos sin ocupar espacio visual. No usa `display:none` porque eso lo
+  sacaría también del árbol de accesibilidad.
+*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Salto al contenido: primer foco de la página, visible solo al tabular */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  z-index: 100;
+  transform: translate(-50%, -200%);
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+  font-weight: 500;
+  color: var(--brand);
+  background: rgba(28, 87, 235, 0.08);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 20px;
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.section-head p {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.36px;
+  margin-top: 16px;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.36px;
+}
+
+/* ===========================================================
+   Botones
+   =========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding-inline: 22px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--brand-hover);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--ink-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.btn--ghost:hover {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(18, 18, 24, 0.18);
+}
+
+.btn--sm {
+  height: 36px;
+  padding-inline: 16px;
+}
+
+/* Botón circular con flecha */
+.arrow-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.arrow-btn:hover {
+  transform: translate(2px, -2px);
+}
+
+/* ===========================================================
+   Tarjetas
+   =========================================================== */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+/* ===========================================================
+   Reveal on scroll
+   =========================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn:hover,
+  .arrow-btn:hover {
+    transform: none;
+  }
+}
+
+/* ===========================================================
+   Breakpoints (los mismos que usa el sitio original)
+   =========================================================== */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 44px;
+    line-height: 52px;
+    letter-spacing: -0.88px;
+  }
+
+  .section {
+    padding-block: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+  }
+
+  h2 {
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: -0.56px;
+  }
+
+  .section {
+    padding-block: 56px;
+  }
+
+  .section-head {
+    margin-bottom: 32px;
+  }
+}

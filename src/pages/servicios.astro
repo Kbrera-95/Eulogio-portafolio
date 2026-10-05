@@ -1,0 +1,242 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import { serviciosPage, site } from '../data/site';
+---
+
+<Base title={serviciosPage.title} description={serviciosPage.description}>
+  <Nav />
+
+  <main id="contenido">
+    <section class="servicios-hero">
+      <div class="container">
+        <div class="servicios-hero__copy reveal">
+          <span class="eyebrow">{serviciosPage.eyebrow}</span>
+          <h1>{serviciosPage.heading}</h1>
+          <p class="lead">{serviciosPage.intro}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="servicios">
+      <div class="container">
+        {
+          serviciosPage.items.map((item, i) => (
+            <article class="servicio reveal" style={`--delay:${i * 80}ms`}>
+              <div class="servicio__main">
+                <span class="servicio__icon" aria-hidden="true">
+                  <ServiceIcon name={item.icon} />
+                </span>
+
+                <h2>{item.title}</h2>
+                <p>{item.text}</p>
+
+                <a class="btn btn--primary" href={site.ctaHref}>
+                  {item.cta}
+                </a>
+              </div>
+
+              <div class="servicio__aside">
+                <h3>{serviciosPage.includesLabel}</h3>
+
+                <ul class="servicio__list">
+                  {item.includes.map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+
+                <p class="servicio__for">{item.forWho}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="servicios-cta">
+      <div class="container">
+        <div class="servicios-cta__box reveal">
+          <h2>{serviciosPage.closing.title}</h2>
+          <p>{serviciosPage.closing.text}</p>
+          <a class="btn btn--primary" href={serviciosPage.closing.href}>
+            {serviciosPage.closing.cta}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .servicios-hero {
+    padding-top: 176px;
+    padding-bottom: 24px;
+  }
+
+  .servicios-hero__copy {
+    max-width: 620px;
+  }
+
+  .servicios-hero h1 {
+    margin-bottom: 16px;
+  }
+
+  .servicios {
+    padding-bottom: 32px;
+  }
+
+  .servicio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 40px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card), inset 0 0 0 1px var(--line);
+  }
+
+  .servicio + .servicio {
+    margin-top: 32px;
+  }
+
+  /* Divisor vertical entre la columna de descripción y la de detalle */
+  .servicio__aside {
+    padding-left: 48px;
+    border-left: 1px solid var(--line);
+  }
+
+  .servicio__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-sm);
+    background: rgba(28, 87, 235, 0.08);
+    color: var(--brand);
+  }
+
+  .servicio h2 {
+    max-width: 16ch;
+  }
+
+  .servicio__main p {
+    margin: 16px 0 28px;
+    max-width: 46ch;
+  }
+
+  .servicio__aside h3 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .servicio__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 28px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .servicio__list li {
+    position: relative;
+    padding-left: 26px;
+    font-size: 15px;
+    line-height: 22px;
+    color: var(--muted);
+  }
+
+  .servicio__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--brand);
+    opacity: 0.35;
+  }
+
+  .servicio__for {
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    background: #f4f4f6;
+    box-shadow: inset 0 0 0 1px var(--line);
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  .servicios-cta {
+    padding-block: 32px 24px;
+  }
+
+  .servicios-cta__box {
+    padding: 56px;
+    border-radius: var(--radius-lg);
+    background: var(--dark);
+  }
+
+  .servicios-cta__box h2 {
+    color: #fff;
+    max-width: 20ch;
+  }
+
+  .servicios-cta__box p {
+    margin: 12px 0 28px;
+    max-width: 62ch;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  @media (max-width: 980px) {
+    .servicio {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 32px;
+    }
+
+    .servicio__aside {
+      padding-left: 0;
+      padding-top: 32px;
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .servicio h2,
+    .servicio__main p {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .servicios-hero {
+      padding-top: 140px;
+    }
+
+    .servicios-hero h1 {
+      font-size: 40px;
+      line-height: 46px;
+      letter-spacing: -0.8px;
+    }
+
+    .servicio {
+      padding: 24px;
+    }
+
+    .servicios-cta__box {
+      padding: 32px 24px;
+    }
+  }
+</style>

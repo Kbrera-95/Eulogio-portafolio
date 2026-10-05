@@ -1,0 +1,199 @@
+---
+import { hero } from '../data/site';
+import ArrowIcon from './ArrowIcon.astro';
+---
+
+<section class="hero">
+  <div class="hero__stage">
+    <div class="container hero__inner reveal">
+      <div class="hero__copy">
+        <h1>{hero.title}</h1>
+        <p class="lead">{hero.text}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={hero.primary.href}>{hero.primary.label}</a>
+          <a class="btn btn--ghost" href={hero.secondary.href}>{hero.secondary.label}</a>
+        </div>
+      </div>
+
+      <div class="hero__media">
+        <img
+          src={hero.photo}
+          alt="Retrato de Eulogio Cabrera"
+          width="620"
+          height="699"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+
+        <a class="hero__card" href={hero.card.href}>
+          <div>
+            <span class="hero__card-eyebrow">{hero.card.eyebrow}</span>
+            <h3>{hero.card.title}</h3>
+            <p>{hero.card.text}</p>
+          </div>
+          <span class="arrow-btn"><ArrowIcon /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    /* Alto total del banner y espacio reservado para la nav flotante */
+    --hero-height: 720px;
+    --hero-top: 128px;
+
+    padding-bottom: 24px;
+  }
+
+  /* Banner a todo el ancho: el fondo sangra de borde a borde
+     y el contenido queda dentro de la grilla del contenedor. */
+  .hero__stage {
+    display: grid;
+    align-items: end;
+    width: 100%;
+    min-height: var(--hero-height);
+    padding-top: var(--hero-top);
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 32px;
+    /* Altura definida: la foto se escala contra ella en vez de imponer su alto */
+    height: calc(var(--hero-height) - var(--hero-top));
+  }
+
+  .hero__copy {
+    padding-bottom: 40px;
+  }
+
+  .hero__copy p {
+    margin-top: 20px;
+    max-width: 46ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .hero__media {
+    position: relative;
+    align-self: end;
+    justify-self: center;
+    height: 100%;
+    /* evita que el tamaño intrínseco de la foto estire la fila */
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero__media img {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+  .hero__card {
+    position: absolute;
+    left: -12%;
+    bottom: 48px;
+    width: 340px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border-radius: var(--radius);
+    background: rgba(20, 20, 26, 0.28);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+    transition: transform 0.25s ease;
+  }
+
+  .hero__card:hover {
+    transform: translateY(-3px);
+  }
+
+  .hero__card-eyebrow {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero__card h3 {
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .hero__card p {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      --hero-height: 640px;
+      --hero-top: 120px;
+    }
+
+    .hero__card {
+      left: -20%;
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      --hero-top: 104px;
+    }
+
+    .hero__stage {
+      min-height: 0;
+    }
+
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      height: auto;
+    }
+
+    .hero__copy {
+      padding-bottom: 0;
+    }
+
+    .hero__media {
+      justify-self: center;
+      justify-content: center;
+    }
+
+    .hero__media img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      max-height: 360px;
+    }
+
+    .hero__card {
+      position: static;
+      width: 100%;
+      margin-bottom: 24px;
+      background: rgba(20, 20, 26, 0.55);
+    }
+  }
+</style>

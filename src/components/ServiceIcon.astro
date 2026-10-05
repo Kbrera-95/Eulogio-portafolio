@@ -1,0 +1,35 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+{
+  name === 'pen' && (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19 7 14l7-7 5 5-7 7Z" />
+      <path d="m14 7-2.5-2.5a2 2 0 0 0-2.8 0L4 9.2a2 2 0 0 0 0 2.8L6.5 14.5" />
+      <path d="m7 14-4 7 7-4" />
+    </svg>
+  )
+}
+
+{
+  name === 'screen' && (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2.5" y="4" width="19" height="13" rx="2" />
+      <path d="M8.5 21h7M12 17v4" />
+    </svg>
+  )
+}
+
+{
+  name === 'chart' && (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12a9 9 0 1 1-9-9v9h9Z" />
+      <path d="M15.5 3.9A9 9 0 0 1 21 9.4h-5.5V3.9Z" />
+    </svg>
+  )
+}

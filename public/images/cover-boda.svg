@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 760" width="1600" height="760" role="img" aria-label="Invitación digital de boda">
+  <defs>
+    <linearGradient id="boda-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6F2EA"/>
+      <stop offset="1" stop-color="#E7DCCB"/>
+    </linearGradient>
+    <linearGradient id="boda-screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFDF9"/>
+      <stop offset="1" stop-color="#F4EEE3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="760" fill="url(#boda-bg)"/>
+  <circle cx="1260" cy="150" r="300" fill="#B08968" opacity="0.10"/>
+  <circle cx="1480" cy="640" r="220" fill="#8A6A4F" opacity="0.08"/>
+  <circle cx="240" cy="700" r="180" fill="#B08968" opacity="0.07"/>
+
+  <!-- teléfono con la invitación -->
+  <g transform="translate(1010 96)">
+    <rect x="10" y="14" width="330" height="600" rx="46" fill="#8A6A4F" opacity="0.14"/>
+    <rect width="330" height="600" rx="46" fill="#FFFDF9"/>
+    <rect x="14" y="14" width="302" height="572" rx="34" fill="url(#boda-screen)"/>
+    <circle cx="165" cy="150" r="58" fill="none" stroke="#B08968" stroke-width="2"/>
+    <circle cx="165" cy="150" r="42" fill="#B08968" opacity="0.14"/>
+    <rect x="86" y="252" width="158" height="12" rx="6" fill="#8A6A4F" opacity="0.55"/>
+    <rect x="62" y="286" width="206" height="26" rx="13" fill="#3B2E22" opacity="0.82"/>
+    <rect x="102" y="336" width="126" height="10" rx="5" fill="#8A6A4F" opacity="0.35"/>
+    <rect x="54" y="392" width="222" height="1" fill="#B08968" opacity="0.3"/>
+    <rect x="54" y="424" width="104" height="10" rx="5" fill="#8A6A4F" opacity="0.3"/>
+    <rect x="54" y="448" width="164" height="10" rx="5" fill="#8A6A4F" opacity="0.22"/>
+    <rect x="54" y="500" width="222" height="44" rx="22" fill="#B08968"/>
+    <rect x="118" y="518" width="94" height="8" rx="4" fill="#FFFDF9" opacity="0.9"/>
+  </g>
+
+  <!-- tarjeta de fecha -->
+  <g transform="translate(820 420)">
+    <rect x="6" y="10" width="220" height="150" rx="20" fill="#8A6A4F" opacity="0.12"/>
+    <rect width="220" height="150" rx="20" fill="#FFFDF9"/>
+    <rect x="24" y="28" width="70" height="9" rx="4.5" fill="#B08968"/>
+    <text x="24" y="98" font-family="Georgia, serif" font-size="52" fill="#3B2E22">14.09</text>
+    <rect x="24" y="118" width="130" height="8" rx="4" fill="#8A6A4F" opacity="0.3"/>
+  </g>
+</svg>

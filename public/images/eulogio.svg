@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 620" width="520" height="620">
+  <rect width="520" height="620" fill="none"/>
+  <g fill="#c9c9d1">
+    <circle cx="260" cy="215" r="120"/>
+    <path d="M60 620c0-110 90-200 200-200s200 90 200 200z"/>
+  </g>
+  <text x="260" y="600" font-family="sans-serif" font-size="18" fill="#8b8b96" text-anchor="middle">reemplazar por foto real</text>
+</svg>

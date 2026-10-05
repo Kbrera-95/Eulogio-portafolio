@@ -1,0 +1,350 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ArrowIcon from '../components/ArrowIcon.astro';
+import ExternalNote from '../components/ExternalNote.astro';
+import { projects, site } from '../data/site';
+import { proyectosPage } from '../data/proyectos';
+---
+
+<Base title={proyectosPage.metaTitle} description={proyectosPage.metaDescription}>
+  <Nav />
+
+  <main id="contenido">
+    <header class="proyectos-hero">
+      <div class="container">
+        <div class="proyectos-hero__copy reveal">
+          <p class="eyebrow">{proyectosPage.eyebrow}</p>
+          <h1 id="proyectos-titulo">{proyectosPage.title}</h1>
+          <p class="lead">{proyectosPage.intro}</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="proyectos" aria-labelledby="proyectos-titulo">
+      <div class="container">
+        <ul class="grid" aria-label="Casos de estudio">
+          {
+            projects.items.map((item, i) => (
+              <li class="grid__cell reveal" style={`--delay:${(i % 2) * 90}ms`}>
+                <a class="pcard" href={item.href}>
+                  <span class="pcard__media" style={`--bg:${item.bg}`}>
+                    <img
+                      src={item.cover}
+                      srcset={`${item.coverSmall} 800w, ${item.cover} 1600w`}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+                      alt={`Vista del proyecto ${item.name}`}
+                      width="1600"
+                      height="900"
+                      loading={i < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  </span>
+
+                  <span class="pcard__body">
+                    <span class="pcard__meta">
+                      <span class="pcard__cat">{item.category}</span>
+                      <span class="pcard__dot" aria-hidden="true" />
+                      {/* `time` marca el año como fecha, no como número suelto */}
+                      <time datetime={item.year}>{item.year}</time>
+                    </span>
+
+                    <h2 class="pcard__title">{item.name}</h2>
+                    <p class="pcard__text">{item.text}</p>
+
+                    <span class="pcard__tags">
+                      {item.tags.map((tag) => (
+                        <span class="pcard__tag">{tag}</span>
+                      ))}
+                    </span>
+
+                    <span class="pcard__cta">
+                      Ver proyecto
+                      <span class="pcard__arrow" aria-hidden="true">
+                        <ArrowIcon size={16} />
+                      </span>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <aside class="banner reveal" aria-labelledby="banner-behance">
+          <p class="banner__mark" aria-hidden="true">Bē</p>
+          <div class="banner__text">
+            <h3 id="banner-behance">{projects.banner.title}</h3>
+            <p>{projects.banner.text}</p>
+          </div>
+          <a
+            class="btn btn--primary btn--sm"
+            href={site.behance}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {projects.banner.cta}
+            <ExternalNote />
+          </a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .proyectos-hero {
+    padding-top: 176px;
+    padding-bottom: 24px;
+  }
+
+  .proyectos-hero__copy {
+    max-width: 660px;
+  }
+
+  .proyectos-hero h1 {
+    margin-bottom: 16px;
+  }
+
+  .proyectos {
+    padding-block: 48px 96px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* La card es un grid de 1 columna para que el CTA quede siempre al pie */
+  .pcard {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card), inset 0 0 0 1px var(--line);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .pcard:hover,
+  .pcard:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 1px 2px rgba(18, 18, 24, 0.06), 0 24px 56px rgba(18, 18, 24, 0.12);
+  }
+
+  .pcard__media {
+    display: block;
+    aspect-ratio: 16 / 9;
+    background: var(--bg, var(--surface-2));
+    overflow: hidden;
+  }
+
+  .pcard__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pcard:hover .pcard__media img {
+    transform: scale(1.03);
+  }
+
+  .pcard__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+  }
+
+  .pcard__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.13px;
+    color: var(--muted);
+  }
+
+  .pcard__cat {
+    color: var(--brand);
+  }
+
+  .pcard__dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(18, 18, 24, 0.28);
+  }
+
+  /* H2 por jerarquía semántica, pero con el tamaño visual de una H3 */
+  .pcard__title {
+    margin-top: 10px;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.48px;
+    font-weight: 500;
+  }
+
+  .pcard__text {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.15px;
+  }
+
+  .pcard__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .pcard__tag {
+    font-family: var(--font-display);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    letter-spacing: -0.12px;
+    color: var(--ink-2);
+    background: var(--surface-2);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+
+  /* `margin-top:auto` alinea el CTA al pie aunque los textos midan distinto */
+  .pcard__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 22px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.14px;
+    color: var(--ink);
+  }
+
+  .pcard__arrow {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: #fff;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pcard:hover .pcard__arrow,
+  .pcard:focus-visible .pcard__arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 56px;
+    padding: 28px 32px;
+    background: var(--dark);
+    border-radius: var(--radius);
+  }
+
+  .banner__mark {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .banner__text {
+    flex: 1;
+  }
+
+  .banner__text h3 {
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.4px;
+  }
+
+  .banner__text p {
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (max-width: 1024px) {
+    .proyectos-hero {
+      padding-top: 148px;
+    }
+
+    .grid {
+      gap: 24px;
+    }
+
+    .pcard__body {
+      padding: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .proyectos-hero {
+      padding-top: 128px;
+    }
+
+    .proyectos {
+      padding-block: 32px 56px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      margin-top: 40px;
+      padding: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pcard,
+    .pcard__media img,
+    .pcard__arrow {
+      transition: none;
+    }
+
+    .pcard:hover,
+    .pcard:focus-visible {
+      transform: none;
+    }
+
+    .pcard:hover .pcard__media img {
+      transform: none;
+    }
+
+    .pcard:hover .pcard__arrow,
+    .pcard:focus-visible .pcard__arrow {
+      transform: none;
+    }
+  }
+</style>

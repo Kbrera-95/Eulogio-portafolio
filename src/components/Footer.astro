@@ -1,0 +1,127 @@
+---
+import { footer, site } from '../data/site';
+import ExternalNote from './ExternalNote.astro';
+---
+
+<footer class="footer" id="contacto">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">{site.name}<span>.</span></span>
+        <p>{footer.tagline}</p>
+        <a class="btn btn--primary" href={`mailto:hola@${site.name}.com`}>{site.ctaLabel}</a>
+      </div>
+
+      {
+        footer.columns.map((col) => (
+          <nav class="footer__col" aria-label={col.title}>
+            <h5>{col.title}</h5>
+            <ul>
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {link.label}
+                    {link.href.startsWith('http') && <ExternalNote />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="footer__bottom">
+      <span>{footer.legal}</span>
+      <span>Hecho con Astro</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 72px 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26.4px;
+    color: var(--ink);
+  }
+
+  .footer__logo span {
+    color: var(--brand);
+  }
+
+  .footer__brand p {
+    margin: 8px 0 24px;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 34ch;
+  }
+
+  .footer__col h5 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.14px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .footer__col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer__col a {
+    font-size: 15px;
+    line-height: 22px;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .footer__col a:hover {
+    color: var(--brand);
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

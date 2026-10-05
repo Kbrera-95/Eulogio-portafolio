@@ -1,0 +1,110 @@
+---
+import { services } from '../data/site';
+---
+
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{services.eyebrow}</span>
+      <h2>{services.title}</h2>
+      <p>{services.text}</p>
+    </div>
+
+    <div class="grid">
+      {
+        services.items.map((item, i) => (
+          <article class="service reveal" style={`--delay:${i * 90}ms`}>
+            {/*
+              La ilustración es decorativa: el título dice lo mismo en texto,
+              así que va con `alt` vacío para no duplicar el anuncio.
+            */}
+            <figure class="service__art">
+              <img
+                src={item.image}
+                srcset={`${item.imageSmall} 400w, ${item.image} 800w`}
+                sizes="(max-width: 980px) 100vw, 368px"
+                alt=""
+                width="1560"
+                height="886"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="services__more reveal">
+      <a class="btn btn--ghost" href="/servicios">Ver todos los servicios en detalle</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .services__more {
+    margin-top: 32px;
+  }
+
+  .service {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .service:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(18, 18, 24, 0.08);
+  }
+
+  .service h3 {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+  }
+
+  .service p {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+  }
+
+  /*
+    Las ilustraciones vienen sobre blanco y se desvanecen abajo, así que van
+    a sangre contra los bordes de la card (que también es blanca): la imagen
+    se funde con la tarjeta en vez de quedar encajonada en un panel.
+  */
+  .service__art {
+    margin: -24px -24px 22px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .service__art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1560 / 886;
+    object-fit: cover;
+  }
+
+  @media (max-width: 980px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
